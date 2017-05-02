@@ -29,7 +29,7 @@ class ROOT(BaseILC):
                 ["bin/root-config"]
         ]
 
-        self.reqmodules_external = [ "GSL" , "MySQL" ]
+        self.reqmodules_external = [ "GSL" ]
 
     def setMode(self, mode):
         BaseILC.setMode(self, mode)

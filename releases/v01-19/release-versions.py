@@ -140,11 +140,11 @@ CED_version = "v01-09-02"
 
 LCIO_version = "v02-08" 
 
-GEAR_version = "v01-07"
+GEAR_version = "v01-06-eutel-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-03"
+ILCUTIL_version = "v01-02-01"
 
 MarlinFastJet_version = "v00-04" 
 
@@ -177,13 +177,13 @@ LICH_version = "v00-01"
 
 # -------------------------------------------
 
-GBL_version = "V01-17-01" #"V02-00-00" 
+GBL_version = "V02-01-00" #"V02-00-00" 
 
 LCCD_version = "v01-04"
 
 RAIDA_version = "v01-08" 
 
-MarlinUtil_version = "v01-13" 
+MarlinUtil_version = "v01-08" 
 
 Marlin_version = "v01-11"
 
@@ -234,3 +234,6 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.4"
 
 XercesC_version = "3.1.4" 
 
+Eutelescope_version = "master"
+Eudaq_version = "branches/v1.7-dev"
+Millepede2_version = 'tags/V04-03-03'
