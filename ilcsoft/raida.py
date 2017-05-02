@@ -24,7 +24,12 @@ class RAIDA(BaseILC):
         self.reqmodules = [ "ROOT" ]
 
         # cvs root
-        self.download.root = "ilctools"
+        #self.download.root = "ilctools"
+
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'RAIDA'
+
 
     def compile(self):
         """ compile RAIDA """

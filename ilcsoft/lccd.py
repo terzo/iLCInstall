@@ -26,6 +26,10 @@ class LCCD(BaseILC):
         # optional modules
         self.optmodules = [ "CondDBMySQL" ]
 
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'iLCSoft'
+        self.download.gitrepo = 'LCCD'
+
     def compile(self):
         """ compile LCCD """
         
