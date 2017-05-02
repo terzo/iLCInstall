@@ -29,7 +29,12 @@ class Eutelescope(MarlinPKG):
         self.optmodules = [ "GEAR", "AIDA" , "MarlinUtil", "CLHEP", "GSL", "CED", "ROOT", "GBL" ]
         
         # set download url with full path
-        self.download.svnurl = 'https://github.com/eutelescope/eutelescope/'+userInput
+        #self.download.svnurl = 'https://github.com/eutelescope/eutelescope/'+userInput
+
+        self.download.supportedTypes = [ "GitHub" ] 
+        self.download.gituser = 'eutelescope'
+        self.download.gitrepo = 'eutelescope'
+
 
 
     def compile(self):
@@ -54,14 +59,14 @@ class Eutelescope(MarlinPKG):
         if self.env.get( "EUDAQ_VERSION", "" ):
             # ----- BUILD EUDAQ ---------------------------------
             os.chdir( self.installPath+"/external" )
-            if( not self.env["EUDAQ_VERSION"] == 'trunk' ):
+            #if( not self.env["EUDAQ_VERSION"] == 'trunk' ):
                 # check out e.g. the tagged version (using svn)
-                if( os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
-                    self.abort( "failed to checkout EUDAQ!" )
-            else:
+             #   if( os.system( "svn co https://github.com/eudaq/eudaq/%s eudaq/%s" % (self.env["EUDAQ_VERSION"], os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+             #       self.abort( "failed to checkout EUDAQ!" )
+           # else:
                 # check out a full git clone of the repository
-                if( os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s" % (os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
-                    self.abort( "failed to clone EUDAQ!" )
+            if( os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s --branch %s" % (os.path.basename(self.env["EUDAQ_VERSION"]), os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+                self.abort( "failed to clone EUDAQ!" )
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
@@ -99,6 +104,9 @@ class Eutelescope(MarlinPKG):
         self.env["EUTELESCOPE"] = self.installPath
         self.envpath["PATH"].append( '$EUTELESCOPE/bin' )
         self.envpath["LD_LIBRARY_PATH"].append( '$EUTELESCOPE/lib' )
+        # EUTelescope will also create libEutelProcessors.so and libEutelReaders.so (along with libEutelescope.so which gets added by default as it is the package name)
+        self.parent.module('Marlin').envpath["MARLIN_DLL"].append( '$EUTELESCOPE/lib/libEutelProcessors.so' )
+        self.parent.module('Marlin').envpath["MARLIN_DLL"].append( '$EUTELESCOPE/lib/libEutelReaders.so' )
         # if EUDAQ is installed, adjust paths and Marlin libraries to be loaded
         if self.env.get( "EUDAQ_VERSION", "" ):
             self.envpath["LD_LIBRARY_PATH"].append( '$EUDAQ/lib' )
