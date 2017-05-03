@@ -138,7 +138,7 @@ FastJetcontrib_version = "1.024"
 CED_version = "v01-09-02"
 # -------------------------------------------
 
-LCIO_version = "v02-08" 
+LCIO_version = "master" 
 
 GEAR_version = "v01-06-eutel-pre"
 

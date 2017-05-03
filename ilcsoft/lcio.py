@@ -27,7 +27,7 @@ class LCIO(BaseILC):
         # supported download types
         #self.download.supportedTypes = ["svn"]
         self.download.supportedTypes = [ "GitHub" ] 
-        self.download.gituser = 'iLCSoft'
+        self.download.gituser = 'eutelescope'
         self.download.gitrepo = 'LCIO'
 
 
@@ -63,7 +63,7 @@ class LCIO(BaseILC):
 
         self.download.svnurl = 'svn://svn.freehep.org/lcio'
 
-        if( Version( self.version ) == 'HEAD' ):
+        if( self.version  == 'HEAD' ):
             self.download.svnurl += '/trunk'
         elif '-pre' in self.version or '-dev' in self.version:
             self.download.svnurl += '/branches/' + self.version
