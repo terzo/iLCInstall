@@ -426,7 +426,7 @@ class Repo(object):
   def getFileFromBranch( self, filename ):
     """return the content of the file in the given branch, filename needs to be the full path"""
 
-    result = curl2Json( ghHeaders(), self._github( "contents/%s?branch=%s" %(filename,self.branch) ) )
+    result = curl2Json( ghHeaders(), self._github( "contents/%s?ref=%s" %(filename,self.branch) ) )
     encoded = result.get( 'content', None )
     if encoded is None:
       self.log.error( "File %s not found for %s", filename, self )
@@ -436,7 +436,7 @@ class Repo(object):
     return content, sha, encoded
 
   def updateVersionSettings( self ):
-    """ get the new release notes and commit them to the filename """
+    """ update the version settings in CMakeLists """
 
     content, sha, encodedOld = self.getFileFromBranch( self.cmakeBaseFile )
     major, minor, patch = self._newTag.getMajorMinorPatch()
@@ -449,12 +449,14 @@ class Repo(object):
     contentEncoded = content.encode('base64')
     if encodedOld.replace("\n","") == contentEncoded.replace("\n",""):
       self.log.info("No changes in %s, not making commit", self.cmakeBaseFile )
-      return
+    else:
+      self.log.info( "Update %s is to %s" , self.cmakeBaseFile, self.newVersion )
+      message = "Updating version to %s" % self.newVersion
+      self.createGithubCommit(self.cmakeBaseFile, sha, contentEncoded, message=message)
 
-    message = "Updating version to %s" % self.newVersion
-    self.createGithubCommit(self.cmakeBaseFile, sha, contentEncoded, message=message)
-
-
+    if self.repo.lower() == "dd4hep" and self.cmakeBaseFile == "CMakeLists.txt":
+      self.cmakeBaseFile = "DDSegmentation/CMakeLists.txt"
+      self.updateVersionSettings()
 
   def createGithubCommit( self, filename, fileSha, content, message ):
     """
