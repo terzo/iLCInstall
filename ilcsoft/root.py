@@ -94,6 +94,7 @@ class ROOT(BaseILC):
             tryunlink( "CMakeCache.txt" )
 
         self.envcmake['CMAKE_INSTALL_PREFIX']=self.installPath
+#        self.envcmake['PYTHON_EXECUTABLE']="/opt/rh/python27/root/usr/bin/python2.7"
 
         self.envcmake['GSL_CONFIG_EXECUTABLE']=gsl_bindir+'/gsl-config'
 
