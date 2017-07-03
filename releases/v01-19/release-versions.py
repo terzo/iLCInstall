@@ -144,7 +144,7 @@ GEAR_version = "v01-06-eutel-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-02-01"
+ILCUTIL_version = "master"
 
 MarlinFastJet_version = "v00-04" 
 
