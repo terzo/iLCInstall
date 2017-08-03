@@ -44,7 +44,7 @@ class Eutelescope(MarlinPKG):
             if( os.system( "svn co https://svnsrv.desy.de/public/MillepedeII/%s millepede2/%s" % (self.env["MILLEPEDEII_VERSION"], self.env["MILLEPEDEII_VERSION"]) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to build MILLEPEDE2!" )
             os.chdir( self.env[ "MILLEPEDEII" ] ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
-            if( os.system( "make" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "make ${MAKEOPTS}" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to build MILLEPEDE2!" )
 
 
@@ -63,7 +63,7 @@ class Eutelescope(MarlinPKG):
         if( os.system( self.genCMakeCmd() + " 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to configure!!" )
 
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make install ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
 
@@ -84,7 +84,7 @@ class Eutelescope(MarlinPKG):
             if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure EUDAQ!" )
 
-            if( os.system( "make install" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "make install ${MAKEOPTS}" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to build EUDAQ!" )
 
 

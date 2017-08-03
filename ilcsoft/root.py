@@ -112,7 +112,7 @@ class ROOT(BaseILC):
             self.abort( "failed to configure!!" )
         if( os.system( "make ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to compile!!" )
-        if( os.system( "make install 2>&1 | tee -a " + self.logfile ) != 0 ):
+        if( os.system( "make install ${MAKEOPTS} 2>&1 | tee -a " + self.logfile ) != 0 ):
             self.abort( "failed to install!!" )
 
 
