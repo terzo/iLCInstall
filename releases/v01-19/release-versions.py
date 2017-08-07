@@ -123,7 +123,7 @@ CLHEP_version =  "2.3.1.1"
 #Geant4_version =  "10.03" 
 #CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.10.04"
+ROOT_version = "6.08.00"
 
 GSL_version = "2.1" 
 
