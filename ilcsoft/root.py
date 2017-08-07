@@ -103,8 +103,8 @@ class ROOT(BaseILC):
         self.envcmake.setdefault( 'minuit2',        'ON' )
         self.envcmake.setdefault( 'roofit',         'ON' )
         self.envcmake.setdefault( 'unuran',         'ON' )
-        self.envcmake.setdefault( 'xrootd',         'ON' )
-        self.envcmake.setdefault( 'builtin_xrootd', 'ON' )
+        self.envcmake.setdefault( 'xrootd',         'OFF' )
+        self.envcmake.setdefault( 'builtin_xrootd', 'OFF' )
         self.envcmake.setdefault( 'fortran',        'OFF' )
         self.envcmake.setdefault( 'mysql',          'OFF' )
 
