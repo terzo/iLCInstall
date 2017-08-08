@@ -123,7 +123,7 @@ CLHEP_version =  "2.3.1.1"
 #Geant4_version =  "10.03" 
 #CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.08.00"
+ROOT_version = "6.10.04"
 
 GSL_version = "2.1" 
 
@@ -144,7 +144,7 @@ GEAR_version = "v01-06-eutel-pre"
 
 CondDBMySQL_version = "CondDBMySQL_ILC-0-9-6"
 
-ILCUTIL_version = "v01-04"
+ILCUTIL_version = "v01-02-01"
 
 MarlinFastJet_version = "v00-04" 
 
