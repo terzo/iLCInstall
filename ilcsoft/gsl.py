@@ -32,6 +32,8 @@ class GSL(BaseILC):
                 "lib/shared/libgsl.so",
                 "lib64/shared/libgsl.so",
                 "lib/shared/libgsl.dylib",
+                "lib/x86_64-linux-gnu/libgsl.a",
+                "lib/x86_64-linux-gnu/libgsl.so"  
         ]]
     
     def setMode(self, mode):
