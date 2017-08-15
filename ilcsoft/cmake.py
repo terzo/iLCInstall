@@ -98,4 +98,4 @@ class CMake(BaseILC):
     def postCheckDeps(self):
         BaseILC.postCheckDeps(self)
         self.envpath["PATH"].append( self.installPath+"/bin" )
-
+        os.environ["PATH"] = self.installPath+"/bin:"+os.environ['PATH']
