@@ -22,7 +22,7 @@ class CMake(BaseILC):
         self.hasCMakeBuildSupport = False
         self.hasCMakeFindSupport = False
         self.download.supportedTypes = ["wget"]
-        self.reqfiles = [ ["sbin/cmake"], ["sbin/cpack"], ["sbin/ctest"], ["bin/cmake"], ["bin/cpack"], ["bin/ctest"] ]
+        self.reqfiles = [ ["sbin/cmake", "bin/cmake"], ["sbin/cpack", "bin/cpack"], ["sbin/ctest", "bin/ctest"] ]
 
         if( userInput == "auto" ):
             self.autoDetect()
