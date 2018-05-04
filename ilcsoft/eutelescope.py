@@ -32,8 +32,9 @@ class Eutelescope(MarlinPKG):
         #self.download.svnurl = 'https://github.com/eutelescope/eutelescope/'+userInput
 
         self.download.supportedTypes = [ "GitHub" ] 
-        self.download.gituser = 'eutelescope'
-        self.download.gitrepo = 'eutelescope'
+        #self.download.gituser = 'eutelescope'
+        self.download.gituser = 'terzo'
+	self.download.gitrepo = 'eutelescope'
 
 
 
@@ -76,12 +77,13 @@ class Eutelescope(MarlinPKG):
              #       self.abort( "failed to checkout EUDAQ!" )
            # else:
                 # check out a full git clone of the repository
-            if( os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s --branch %s" % (os.path.basename(self.env["EUDAQ_VERSION"]), os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
-                self.abort( "failed to clone EUDAQ!" )
+            #if( os.system( "git clone https://github.com/eudaq/eudaq eudaq/%s --branch %s" % (os.path.basename(self.env["EUDAQ_VERSION"]), os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "git clone https://github.com/terzo/eudaq eudaq/%s --branch %s" % (os.path.basename(self.env["EUDAQ_VERSION"]), os.path.basename(self.env["EUDAQ_VERSION"])) + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+		self.abort( "failed to clone EUDAQ!" )
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
-            if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON -D CMAKE_CXX_STANDARD=14 -D CMAKE_CXX_STANDARD_REQUIRED=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure EUDAQ!" )
 
             if( os.system( "make install ${MAKEOPTS}" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
