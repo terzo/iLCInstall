@@ -235,5 +235,5 @@ XERCESC_ROOT_DIR = ilcPath + "/xercesc/3.1.4"
 XercesC_version = "3.1.4" 
 
 Eutelescope_version = "master"
-Eudaq_version = "branches/v1.7-dev"
+Eudaq_version = "tags/v1.8.0"
 Millepede2_version = 'tags/V04-03-03'
