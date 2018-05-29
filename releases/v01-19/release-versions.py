@@ -123,13 +123,13 @@ CLHEP_version =  "2.3.1.1"
 #Geant4_version =  "10.03" 
 #CLHEP_version =  "2.3.4.3"
 
-ROOT_version = "6.10.04"
+ROOT_version = "6.13.02"
 
 GSL_version = "2.1" 
 
 QT_version = "4.7.4"
 
-CMake_version = "3.6.3" 
+CMake_version = "3.11.2"
 
 FastJet_version = "3.2.0"
 
@@ -177,7 +177,7 @@ LICH_version = "v00-01"
 
 # -------------------------------------------
 
-GBL_version = "V02-01-02"
+GBL_version = "V02-01-03"
 
 LCCD_version = "v01-04"
 
@@ -236,4 +236,4 @@ XercesC_version = "3.1.4"
 
 Eutelescope_version = "master"
 Eudaq_version = "tags/v1.8.0"
-Millepede2_version = 'tags/V04-03-03'
+Millepede2_version = 'tags/V04-03-09'
