@@ -10,6 +10,7 @@
 # custom imports
 from marlinpkg import MarlinPKG
 from util import *
+import fileinput
 
 class Eutelescope(MarlinPKG):
     """ Responsible for the Eutelescope installation process. """
@@ -75,7 +76,14 @@ class Eutelescope(MarlinPKG):
 
             os.chdir( self.env[ "EUDAQ" ] + "/build" ) # needs to be defined in preCheckDeps (so it is written to build_env.sh)
 
-            if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
+            #os.system("sed -i -r 's/11/14/g'" self.env[ "EUDAQ" ] + "/cmake/Platform.cmake")
+
+	    file = fileinput.FileInput(self.env[ "EUDAQ" ] + "/cmake/Platform.cmake", inplace=True)
+	    for line in file:
+		print(line.replace("11", "14").rstrip())
+	    file.close()
+
+            if( os.system( "cmake -D BUILD_gui=OFF -D BUILD_main=OFF -D BUILD_nreader=ON -D CMAKE_CXX_STANDARD=14 .." + " 2>&1 | tee -a " + self.logfile ) != 0 ):
                 self.abort( "failed to configure EUDAQ!" )
 
             if( os.system( "make install ${MAKEOPTS}" + " 2>&1 | tee -a " + self.logfile ) != 0 ):
